@@ -2,3 +2,36 @@
 
 API javascript que transforma qualquer elemento de seu HTML (uma div, por exemplo) em uma caixa móvel posicionada na parte de cima da tela.
 Para utilizá-lo é necessário estar com o jQuery adicionado ao documento.
+
+
+== O que acontece?
+
+O elemento upper-box vai virar uma caixa "invisível" na parte de cima da tela.
+Quando o usuário se aproxima com o mouse da parte superior da tela (body), o elemento ira rolar, abrindo e exibindo seu conteúdo.
+
+
+== Como usar?
+
+Primeiro inclua os arquivos jQuery e upper-box no seu html, desta forma:
+
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="upper-box.js"></script>
+
+Seu uso é bem simples, basta adicionar "upper-box" ao class do elemento que vai virar upper-box.
+
+Exemplo:
+
+  <div id='div1' class='divClass'>
+    <h2>Olá,</h2>
+    <p>Esta div não é um <b>upper-box</b>!</p>
+  </div>
+
+  <div id='div2' class='divClass upper-box'>
+    <p>Esta div será um <b>upper-box</b>!</p>
+    <p>Simples, não?!</p>
+  </div>
+
+
+== Quais navegadores?
+
+Por enquanto apenas no Firefox... por enquanto.

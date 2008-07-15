@@ -31,11 +31,9 @@ $(document).ready(function(){
   
   // Atribui os css basicos de estrutura ao knob.
   var knob = $('#upper-box-knob');
-  knob.css('height', '10px');
+  knob.css('height', '15px');
   knob.css('margin-left', 'auto');
   knob.css('margin-right', 'auto');
-  knob.css('background-color', 'silver');
-  knob.css('width', box.css('width'));
   
   // Esconde os upper-boxes.
   box.hide();
