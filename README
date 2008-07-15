@@ -1,0 +1,4 @@
+﻿== upper-box
+
+API javascript que transforma qualquer elemento de seu HTML (uma div, por exemplo) em uma caixa móvel posicionada na parte de cima da tela.
+Para utilizá-lo é necessário estar com o jQuery adicionado ao documento.
