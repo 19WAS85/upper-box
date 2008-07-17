@@ -1,8 +1,8 @@
-var UB_INIT_SHOW_TIMEOUT = 3500;
-var UB_CLOSE_ON_OUT_TIMEOUT = 1000;
+var UB_INIT_SHOW_TIMEOUT = 5000;
+var UB_CLOSE_ON_OUT_TIMEOUT = 2000;
 
 // Variavel de controle.
-var upperBoxMouseOver = false;
+var mouseOverUpperBox = false;
 
 $(document).ready(function(){
   
@@ -34,6 +34,7 @@ $(document).ready(function(){
   knob.css('height', '15px');
   knob.css('margin-left', 'auto');
   knob.css('margin-right', 'auto');
+	knob.css('width', box.width());
   
   // Esconde os upper-boxes.
   box.hide();
@@ -42,9 +43,9 @@ $(document).ready(function(){
   knob.mouseover(function(){ShowUpperBox();});
   
   // Eventos que controlam se o usuarios esta com o mouse sobre o upper-box.
-  box.mouseover(function(){upperBoxMouseOver = true;});
+  box.mouseover(function(){mouseOverUpperBox = true;});
   box.mouseout(function(){
-    upperBoxMouseOver = false;
+    mouseOverUpperBox = false;
     setTimeout('overBoxVerify()', UB_CLOSE_ON_OUT_TIMEOUT);
   });
 
@@ -53,7 +54,7 @@ $(document).ready(function(){
 // Funcao que fecha o upper-box se o usuario nao esta com o mouse sobre ele.
 function overBoxVerify()
 {
-  if(!upperBoxMouseOver)
+  if(!mouseOverUpperBox)
     HideUpperBox();
 }
 
