@@ -1,8 +1,9 @@
-var UB_INIT_SHOW_TIMEOUT = 5000;
-var UB_CLOSE_ON_OUT_TIMEOUT = 2000;
+// Constantes de controle de tempo.
+const UB_CLOSE_ON_OUT_TIMEOUT = 1000;
+const UB_INIT_SHOW_TIMEOUT = 5000;
 
-// Variavel de controle.
-var mouseOverUpperBox = false;
+// Variaveis de controle.
+var timers = [];
 
 $(document).ready(function(){
   
@@ -17,8 +18,7 @@ $(document).ready(function(){
   boxMain.css('left', '0px');
   boxMain.css('width', '100%');
   
-  // Colca os elementos com classe upper-box para dentro
-  // do container principal.
+  // Colca o upper-box para dentro do container principal.
   var box = $('.upper-box');
   boxMain.append(box);
   
@@ -26,7 +26,7 @@ $(document).ready(function(){
   box.css('margin-left', 'auto');
   box.css('margin-right', 'auto');
   
-  // Adiciona o knob (macaneta) ao upper-box.
+  // Adiciona o knob (macaneta/puxador) ao upper-box.
   box.after("<div id='upper-box-knob'></div>");
   
   // Atribui os css basicos de estrutura ao knob.
@@ -36,40 +36,42 @@ $(document).ready(function(){
   knob.css('margin-right', 'auto');
 	knob.css('width', box.width());
   
-  // Esconde os upper-boxes.
+  // Esconde o upper-box.
   box.hide();
   
   // Adiciona o evento que dispara a abertura do upper-box.
-  knob.mouseover(function(){ShowUpperBox();});
+  knob.mouseover(function(){showUpperBox();});
   
-  // Eventos que controlam se o usuarios esta com o mouse sobre o upper-box.
-  box.mouseover(function(){mouseOverUpperBox = true;});
+  // Evento que apaga os eventos "esperando" para fechar o upper-box.
+  box.mouseover(function(){
+    clearTimers();
+  });
+  
+  // Dispara o evento que fecha o upper-box.
   box.mouseout(function(){
-    mouseOverUpperBox = false;
-    setTimeout('overBoxVerify()', UB_CLOSE_ON_OUT_TIMEOUT);
+    timers.push(setTimeout('hideUpperBox()', UB_CLOSE_ON_OUT_TIMEOUT));
   });
 
 });
 
-// Funcao que fecha o upper-box se o usuario nao esta com o mouse sobre ele.
-function overBoxVerify()
-{
-  if(!mouseOverUpperBox)
-    HideUpperBox();
-}
-
 // Funcao para mostrar o upper-box.
-function ShowUpperBox()
+function showUpperBox()
 {
   $('.upper-box').slideDown();
   
-  // Dispara timeout para se o usuário não for até o upper_box,
-  // este fecha-se para não atrapalhar a página.
-  setTimeout('overBoxVerify()', UB_INIT_SHOW_TIMEOUT);
+  // Dispara timeout para servir como um "timeout".
+  timers.push(setTimeout('hideUpperBox()', UB_INIT_SHOW_TIMEOUT));
 }
 
 // Funcao para esconder o upper-box.
-function HideUpperBox()
+function hideUpperBox()
 {
   $('.upper-box').slideUp();
+}
+
+// 
+function clearTimers()
+{
+  for(var i=0; i<timers.length; i++) clearTimeout(timers[i]);
+  timers = [];
 }
