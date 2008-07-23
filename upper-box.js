@@ -1,8 +1,8 @@
-// Constantes de controle de tempo.
+// Variaveis de controle de tempo.
 var UB_CLOSE_ON_OUT_TIMEOUT = 1500;
 var UB_INIT_SHOW_TIMEOUT = 3000;
 
-// Variaveis de controle.
+// Variavel que mantem os timeouts ativos.
 var timers = [];
 
 $(document).ready(function(){
@@ -40,9 +40,11 @@ $(document).ready(function(){
   box.hide();
   
   // Adiciona o evento que dispara a abertura do upper-box.
-  knob.mouseover(function(){showUpperBox();});
+  knob.mouseover(function(){
+    showUpperBox();
+  });
   
-  // Evento que apaga os eventos "esperando" para fechar o upper-box.
+  // Apaga os eventos que estao "esperando" para fechar o upper-box.
   box.mouseover(function(){
     clearTimers();
   });
@@ -69,7 +71,7 @@ function hideUpperBox()
   $('.upper-box').slideUp();
 }
 
-// 
+// Funcao que apaga os timeouts que estao ativos.
 function clearTimers()
 {
   for(var i=0; i<timers.length; i++) clearTimeout(timers[i]);
