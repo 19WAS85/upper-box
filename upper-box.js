@@ -1,6 +1,6 @@
 // Constantes de controle de tempo.
-var UB_CLOSE_ON_OUT_TIMEOUT = 1000;
-var UB_INIT_SHOW_TIMEOUT = 5000;
+var UB_CLOSE_ON_OUT_TIMEOUT = 1500;
+var UB_INIT_SHOW_TIMEOUT = 3000;
 
 // Variaveis de controle.
 var timers = [];
